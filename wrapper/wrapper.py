@@ -8,7 +8,7 @@ Decision ladder (strictest wins):
   HOLD_FOR_REVIEW  a promise/exception/guarantee/hype, a weak Ezio dimension, an unverifiable claim, or a missing signal
   APPROVE          everything checkable matched, and Ezio saw nothing wrong (a draft with no checkable claims is fine)
 
-Run one input:  python3 wrapper.py customer_support "Your 30% loyalty discount applies to the Pro plan."
+Run one input:  python3 wrapper.py customer_support "Hi Sam, Business is $99 a month." '{"plan": "Business"}'
 Score yourself: python3 evaluate.py customer_support
 """
 import csv

@@ -1,3 +1,27 @@
+# Our entry: Lumen Cloud Outbound Email Gate (customer support persona)
+
+**Gated action:** `send_email`. Every agent-drafted reply is checked against the company's own price sheet and policies, then combined with Ezio's per-claim fact-check and per-dimension scores, before the email can be sent. Contradictions are **blocked**, promises and hype are **held** for a manager with a logged reason, and everything else is **approved**, including emails with nothing to check.
+
+| | |
+|---|---|
+| Decision policy (one page) | [`DECISION_POLICY.md`](DECISION_POLICY.md) |
+| Setup and exact commands | [`RUN.md`](RUN.md) |
+| Devpost text, AI tools used | [`SUBMISSION.md`](SUBMISSION.md) |
+| Two-minute demo script | [`DEMO_SCRIPT.md`](DEMO_SCRIPT.md) |
+| Persona page screenshots | [`docs/screenshots/`](docs/screenshots/) |
+| Our code | [`wrapper/claims.py`](wrapper/claims.py), [`wrapper/wrapper.py`](wrapper/wrapper.py), [`wrapper/policy.json`](wrapper/policy.json), [`wrapper/serve.py`](wrapper/serve.py), [`wrapper/ui/`](wrapper/ui/) |
+
+```bash
+python3 gate.py practice --persona customer_support    # 16/16 exact, 0 false blocks, failure drills 15/15
+python3 gate.py serve --persona customer_support       # open the printed address for the persona page
+```
+
+![Blocked draft: the wrong fact is struck through, with evidence from the price sheet](docs/screenshots/live_block.png)
+
+---
+
+*The official starter README follows, unchanged.*
+
 # Approval Gate
 
 **A trust score doesn't make a decision. Your wrapper does.**
