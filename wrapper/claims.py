@@ -280,6 +280,11 @@ def extract_figures(text):
             if value:
                 figs.append(Figure("percent", value, "pct", m.start(), m.end(), text[m.start():m.end()]))
                 taken.append((m.start(), m.end()))
+    for m in re.finditer(r"\bhalf\s+(?:a|an)\s+(day|hour)\b|\b(?:a\s+)?half[\s-]day\b", text, re.I):
+        if free(m.start(), m.end()):
+            hours = 0.5 if (m.group(1) or "").lower() == "hour" else 12.0
+            figs.append(Figure("duration", hours, "hours", m.start(), m.end(), text[m.start():m.end()]))
+            taken.append((m.start(), m.end()))
     for m in DURATION_RE.finditer(text):
         if not free(m.start(), m.end()):
             continue
@@ -419,6 +424,13 @@ class Checker:
         if fig.kind == "percent":
             return self.check_percent(text, sent, clause, fig, context, prev_plan)
         if fig.kind == "duration":
+            if fig.open_ended:
+                near = text[max(clause[0], fig.start - 60):min(clause[1], fig.end + 40)]
+                return self.check_refund(text, sent, clause, fig, context) if CUES["refund"].search(near) else []
+            if re.search(r"\b(?:extend\w*|extra|additional|another|more|bonus)\b[^.!?]{0,25}$", text[max(sent.start, fig.start - 40):fig.start], re.I) \
+                    or re.search(r"\b(?:extra|additional|more|bonus)\b", fig.text, re.I) \
+                    or re.search(r"\bextend\w*\b", sent.text, re.I) and re.search(r"\bby\s*$", text[max(sent.start, fig.start - 6):fig.start], re.I):
+                return []  # an extension amount ("extend your trial by a week") is an exception, handled by the authority rule
             cue = self.nearest_cue(text, sent, clause, fig, ["refund", "trial", "response", "loyalty"])
             if fig.unit == "hours" and cue not in ("response", "refund", "trial"):
                 cue = "response" if CUES["response"].search(stext) else cue
@@ -805,9 +817,11 @@ class Checker:
     WEAK_FEATURE_NOUN = re.compile(r"\b(?:option|setting|update|support\s+for|improvement|change)s?\b", re.I)
     ENGINEERING = re.compile(r"\b(?:engineering|engineers|developers|dev\s+team|product\s+team|roadmap)\b", re.I)
     DATE = re.compile(r"\b(?:next\s+(?:week|month|quarter|year|sprint|release)|by\s+(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday|tomorrow|next|the\s+end\s+of\s+(?:the\s+)?(?:week|month|quarter|year)|end\s+of\s+(?:the\s+)?(?:week|month|quarter|year)|q[1-4]|january|february|march|april|may|june|july|august|september|october|november|december|\d)|"
-                      r"(?:this|next)\s+(?:week|month|quarter)|in\s+(?:the\s+)?(?:next\s+)?(?:\d+|a|two|three|few|couple\s+of)\s+(?:days|weeks|months)|q[1-4]\s*(?:20\d\d)?|before\s+(?:your\s+renewal|the\s+end))\b", re.I)
+                      r"(?:this|next)\s+(?:week|month|quarter)|in\s+(?:the\s+)?(?:next\s+)?(?:\d+|a|two|three|few|couple\s+of)\s+(?:days|weeks|months)|q[1-4]\s*(?:20\d\d)?|before\s+(?:your\s+renewal|the\s+end)|soon|shortly|any\s+day\s+now|in\s+the\s+coming\s+(?:days|weeks|months))\b", re.I)
     EXCEPTION = re.compile(
         r"\b(?:make\s+an?\s+exception|as\s+an?\s+exception|one[\s-]time\s+exception|just\s+this\s+once|waive\w*|bend\s+the\s+rules?|special\s+(?:case|exception|arrangement)|off\s+the\s+record|"
+        r"(?:even\s+though|although|despite|even\s+if)[^.!?]{0,40}\b(?:past|outside|beyond|after|expired|over)\b[^.!?]{0,30}\b(?:window|deadline|days|policy|period|trial)|"
+        r"(?:an?\s+)?(?:extra|additional|bonus)\s+(?:\w+\s+)?(?:days?|weeks?|months?|time)\b|"
         r"override|outside\s+(?:of\s+)?(?:the\s+|our\s+)?(?:policy|refund\s+window|trial)|extend\w*\s+(?:your|the)\s+(?:free\s+)?(?:trial|refund\s+window|deadline)|"
         r"(?:free|complimentary|bonus)\s+(?:upgrade|month|months|credit|seats?)|on\s+the\s+house|comp(?:ed|ing)?\s+(?:you|your)|credit\s+your\s+account|"
         r"(?:extra|additional|special|exclusive|personal)\s+(?:\d+\s*%\s+)?discount|(?:i|we)(?:'ll|\s+will|\s+can)\s+(?:give|offer)\s+you\s+(?:a|an)\s+(?!loyalty|annual|yearly)(?:\w+\s+)?discount)\b", re.I)
