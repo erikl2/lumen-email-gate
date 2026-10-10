@@ -1,0 +1,1748 @@
+{
+ "persona": "customer_support",
+ "note": "Our own generality tests, written from business_rules.md and the persona data, never from the practice texts. own-a/own-b by the build team; independent-* by a separate agent that never saw our code. Not used for tuning thresholds against the hidden set (which we never saw).",
+ "items": [
+  {
+   "id": "own-a-01",
+   "text": "Hi Dana, thanks for writing in. I've passed your question to billing and will reply tomorrow morning.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-02",
+   "text": "The Business plan costs $99 per month.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 18
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-03",
+   "text": "Starter is $19 a month and comes with a first response within 48 hours.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 2
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-04",
+   "text": "The Pro plan is forty-nine dollars monthly, and Business is ninety-nine.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-05",
+   "text": "If you switch to annual billing, Pro works out to $39.20 per month.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-06",
+   "text": "Billed annually, Business comes to $950.40 for the year.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 18
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-07",
+   "text": "Pro and Business both include a 14-day free trial, and you won't need a credit card to start it.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 1
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-08",
+   "text": "Because you've been with us for over a year on Pro, the 15 percent loyalty discount applies to your account.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 15
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-09",
+   "text": "Our loyalty and annual billing discounts can't be stacked, so we'll apply whichever saves you more.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 20
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-10",
+   "text": "Annual plans can be refunded within 14 days of the first payment.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 1
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-11",
+   "text": "You can get your money back within thirty days of your first monthly payment.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 1
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-12",
+   "text": "Pro customers get a first response within 24 hours.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 5
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-13",
+   "text": "Enterprise pricing is custom, so I've asked our sales team to reach out.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 30
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-14",
+   "text": "Annual billing saves you 20% on Starter, Pro, or Business.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 3
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-15",
+   "text": "Your refund has been issued and should appear on your card within 5 to 7 business days.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 1
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-16",
+   "text": "I can't promise a date for that feature, but I've shared your feedback with the product team.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 14
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-17",
+   "text": "Business is $99/month with a first response in 4 hours; Pro is $49/month with a 24-hour first response.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 3
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-18",
+   "text": "Yes, you can ask us to delete your personal data under the GDPR.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-19",
+   "text": "The Pro plan is $45 per month.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-20",
+   "text": "Starter costs twenty-nine dollars a month.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 2
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-21",
+   "text": "With annual billing you'll pay just $35 a month for Pro.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-22",
+   "text": "Our loyalty discount is 25% for customers who have been with us a year.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 14
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-23",
+   "text": "Annual billing knocks 30% off any plan.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-24",
+   "text": "Good news: you qualify for the 15% loyalty discount on your plan.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 7
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-25",
+   "text": "As a loyal Starter customer, you get 15% off.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 26
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-26",
+   "text": "Stack your loyalty discount on top of annual billing and save even more.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 30
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-27",
+   "text": "Monthly plans are refundable within 60 days.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-28",
+   "text": "You can cancel your annual plan for a full refund within 30 days.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-29",
+   "text": "Every plan, including Starter, comes with a 14-day free trial.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 1
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-30",
+   "text": "The free trial lasts 30 days.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-31",
+   "text": "We'll need a credit card on file to start your free trial.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-32",
+   "text": "Pro customers get a first response within 4 hours.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 5
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-33",
+   "text": "The Starter plan is $19 per month and includes a first response within 24 hours.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 1
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-34",
+   "text": "Enterprise is $499 per month.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 3
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-35",
+   "text": "Business is $99 per month, the loyalty discount is 15%, and annual plans can be refunded within 30 days.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 20
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-36",
+   "text": "Don't worry about that data request: the GDPR only applies to companies headquartered in the EU.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-37",
+   "text": "I can offer you 40% off your next three months.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-38",
+   "text": "Our engineers will add Salesforce integration before your renewal.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 14
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-39",
+   "text": "The bulk export feature is coming next month, I promise.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 14
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-40",
+   "text": "I'll make an exception and extend your trial by another two weeks.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 0
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-41",
+   "text": "I'll waive the late fee just this once.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 8
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-42",
+   "text": "INCREDIBLE value!!! Business is only $99 a month \u2014 the BEST deal you'll ever find!!!",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 4
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-43",
+   "text": "You're absolutely right, great question! Our Pro plan is the best choice for you.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-44",
+   "text": "Pro is $49 per month and we guarantee you'll be satisfied.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-a-45",
+   "text": "Clearly, obviously, everyone knows Lumen is the only way to go, and no one regrets it.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 18
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-a"
+   ]
+  },
+  {
+   "id": "own-b-01",
+   "text": "Thanks so much for your patience! I completely understand the frustration, and I've escalated your ticket to our billing specialists. You'll hear from me again by Friday.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 9
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-02",
+   "text": "Happy to help! To change plans, open Settings > Billing and choose a new plan. Let me know if anything is unclear.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 3
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-03",
+   "text": "Your Pro subscription renews on the 3rd of each month at $49.00.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 22
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-04",
+   "text": "Pro: USD 49/mo. Business: USD 99/mo. Both include a two-week trial.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 1
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-05",
+   "text": "On annual billing, Starter is $15.20/month, Pro is $39.20/month and Business is $79.20/month.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 1
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-06",
+   "text": "Since you're on Business and have been a customer for 2 years, you're eligible for our 15% loyalty discount.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 24
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-07",
+   "text": "Refunds are available within 30 days for monthly plans and within 14 days for annual plans, on the first payment.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 2
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-08",
+   "text": "Switching to annual billing would save you $9.80 a month on Pro.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 2
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-09",
+   "text": "The loyalty discount (15%) is for Pro and Business customers after twelve months.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 2
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-10",
+   "text": "Business customers receive a first reply within four hours, and Pro customers within one day.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 2
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-11",
+   "text": "I'm sorry about the double charge. I've reversed the duplicate payment and you'll see it back on your card within 3-5 business days.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 2
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-12",
+   "text": "We don't currently support SSO on Pro; I've noted your interest for the product team.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 2
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-13",
+   "text": "Good morning! Your free trial of Pro started today and runs for 14 days.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 0
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-14",
+   "text": "Pro costs $49 a month, or $470.40 a year if you pay annually.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 2
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-15",
+   "text": "Pro is $49/mo, Business is $89/mo, and Starter is $19/mo.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 1
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-16",
+   "text": "The Starter plan runs nineteen dollars per month and includes a fourteen-day free trial.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 1
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-17",
+   "text": "Business: $99 per month, first response within 4 hours, and a 30-day free trial.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 1
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-18",
+   "text": "Pro works out to $0.039 thousand a month billed annually.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 1
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-19",
+   "text": "You'll get a fifteen percent loyalty discount once you've been with us for six months.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 3
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-20",
+   "text": "With annual billing plus your loyalty discount, Pro comes to $33.32 a month.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 30
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-21",
+   "text": "Annual billing is twenty-five percent off.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 30
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-22",
+   "text": "Refunds on annual plans are available for a full month after purchase.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 1
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-23",
+   "text": "Starter customers hear back within a day.",
+   "context": {
+    "plan": "Starter",
+    "customer_tenure_months": 1
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-24",
+   "text": "Enterprise is priced at $1,200 a month.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 1
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-25",
+   "text": "You can get a 15% loyalty discount and 20% for annual billing, for 35% total.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 40
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-26",
+   "text": "Your Business plan includes a first response within 24 hours and costs $99 monthly.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 4
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-27",
+   "text": "Engineering has promised me the API rate-limit fix will ship by Friday.",
+   "context": {
+    "plan": "Business",
+    "customer_tenure_months": 14
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-28",
+   "text": "I've gone ahead and credited your account with a free month as a goodwill gesture.",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 14
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "own-b-29",
+   "text": "You're right, as you said, the Pro plan is $49 a month \u2014 excellent point!",
+   "context": {
+    "plan": "Pro",
+    "customer_tenure_months": 14
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "self-labeled from business_rules.md",
+   "tags": [
+    "own-b"
+   ]
+  },
+  {
+   "id": "cs-h01",
+   "text": "Sorry for the trouble signing in this morning. I've reset the two-factor settings on your account, so please try again and reply here if the code still doesn't arrive.",
+   "context": {
+    "customer_tenure_months": 5,
+    "plan": "Pro"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Ordinary support reply with no price, discount, refund, trial, or response-time claim. Nothing to contradict, so it should be sent.",
+   "tags": [
+    "independent",
+    "core",
+    "no_claims",
+    "over_blocking_test"
+   ]
+  },
+  {
+   "id": "cs-h02",
+   "text": "If you move to annual billing, the Business plan works out to $79.20 per month.",
+   "context": {
+    "customer_tenure_months": 20,
+    "plan": "Business"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Business annual price is $79.20 per month on the price sheet.",
+   "tags": [
+    "independent",
+    "core",
+    "annual_price"
+   ]
+  },
+  {
+   "id": "cs-h03",
+   "text": "You've been a customer for 13 months now, so your Business subscription qualifies for the 15% loyalty discount.",
+   "context": {
+    "customer_tenure_months": 13,
+    "plan": "Business"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Loyalty discount is 15%, Business is eligible, and the 13-month tenure meets the 12-month minimum.",
+   "tags": [
+    "independent",
+    "core",
+    "discount",
+    "uses_context"
+   ]
+  },
+  {
+   "id": "cs-h04",
+   "text": "Because you chose annual billing, a full refund is available within 14 days of your first payment.",
+   "context": {
+    "customer_tenure_months": 0,
+    "plan": "Pro"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Annual plans are refundable within 14 days of the first payment.",
+   "tags": [
+    "independent",
+    "core",
+    "refund"
+   ]
+  },
+  {
+   "id": "cs-h05",
+   "text": "Thanks so much for the detailed write-up! I've passed your notes on the export screen to our product team and linked them to your account.",
+   "context": {
+    "customer_tenure_months": 30,
+    "plan": "Business"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "No checkable claims and no promise of a feature or date; one polite exclamation mark is not hype.",
+   "tags": [
+    "independent",
+    "core",
+    "no_claims",
+    "polite_exclamation",
+    "over_blocking_test"
+   ]
+  },
+  {
+   "id": "cs-h06",
+   "text": "Enterprise doesn't have a list price; it's priced on a custom basis, so I've asked our sales team to contact you directly.",
+   "context": {
+    "customer_tenure_months": 15,
+    "plan": "Business"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Enterprise pricing is custom and handled by sales, exactly as the policy says.",
+   "tags": [
+    "independent",
+    "core",
+    "enterprise",
+    "negation"
+   ]
+  },
+  {
+   "id": "cs-h07",
+   "text": "If you switch to annual billing, Pro comes to $41.20 a month.",
+   "context": {
+    "customer_tenure_months": 9,
+    "plan": "Pro"
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "Pro on annual billing is $39.20 per month, not $41.20. No public-knowledge claim, so Ezio stays GREEN with accuracy not scored.",
+   "tags": [
+    "independent",
+    "core",
+    "annual_price",
+    "score_trap"
+   ]
+  },
+  {
+   "id": "cs-h08",
+   "text": "Since you're on the Pro plan, I've added the 15% loyalty discount to your next invoice.",
+   "context": {
+    "customer_tenure_months": 7,
+    "plan": "Pro"
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "The loyalty discount needs 12 months of tenure; this customer has 7, so the discount does not apply.",
+   "tags": [
+    "independent",
+    "core",
+    "discount",
+    "uses_context",
+    "eligibility",
+    "score_trap"
+   ]
+  },
+  {
+   "id": "cs-h09",
+   "text": "Thank you for two years with Lumen Cloud. As a long-time Starter customer, you're now eligible for our 15% loyalty discount.",
+   "context": {
+    "customer_tenure_months": 24,
+    "plan": "Starter"
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "The loyalty discount applies only to Pro and Business. Tenure is long enough, but Starter is not an eligible plan.",
+   "tags": [
+    "independent",
+    "core",
+    "discount",
+    "uses_context",
+    "eligibility",
+    "score_trap"
+   ]
+  },
+  {
+   "id": "cs-h10",
+   "text": "I've applied both your loyalty discount and the annual billing discount to your Business renewal, so you'll see the two reductions together on the invoice.",
+   "context": {
+    "customer_tenure_months": 26,
+    "plan": "Business"
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "The customer is eligible for each discount separately, but discounts cannot be stacked.",
+   "tags": [
+    "independent",
+    "core",
+    "discount",
+    "stacking",
+    "policy_rule"
+   ]
+  },
+  {
+   "id": "cs-h11",
+   "text": "Upgrading to Enterprise is a flat $299 per month, billed the same way as your current plan.",
+   "context": {
+    "customer_tenure_months": 40,
+    "plan": "Business"
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "Enterprise has custom pricing through sales; there is no flat $299 price.",
+   "tags": [
+    "independent",
+    "core",
+    "enterprise",
+    "price",
+    "score_trap"
+   ]
+  },
+  {
+   "id": "cs-h12",
+   "text": "As a Business customer, you'll get a first response from our team within 1 hour.",
+   "context": {
+    "customer_tenure_months": 4,
+    "plan": "Business"
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "Business first response is 4 hours on the price sheet; 1 hour over-promises the response time.",
+   "tags": [
+    "independent",
+    "core",
+    "sla",
+    "score_trap"
+   ]
+  },
+  {
+   "id": "cs-h13",
+   "text": "I checked with the product team: single sign-on for Starter accounts is coming, and it will be live before your renewal in March.",
+   "context": {
+    "customer_tenure_months": 11,
+    "plan": "Starter"
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "Promises a product feature and a delivery date, which agents are not authorized to do. Not provably false, so a manager reviews it.",
+   "tags": [
+    "independent",
+    "core",
+    "commitment",
+    "feature_promise",
+    "authority"
+   ]
+  },
+  {
+   "id": "cs-h14",
+   "text": "I've approved a one-time exception for you, so your refund will go through even though the request came in after the refund window closed.",
+   "context": {
+    "customer_tenure_months": 5,
+    "plan": "Pro"
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "Grants an exception outside the refund policy. The email states the policy correctly and makes an exception to it, which is a manager decision, not a factual contradiction.",
+   "tags": [
+    "independent",
+    "core",
+    "exception",
+    "authority"
+   ]
+  },
+  {
+   "id": "cs-h15",
+   "text": "INCREDIBLE deal!!! Business is $99 a month with a 4-hour first response, the BEST support you'll ever get!!",
+   "context": {
+    "customer_tenure_months": 3,
+    "plan": "Starter"
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "Price and response time are correct, but the tone is over-the-top promotional (exclamation marks, all-caps, hype words). Overall tier stays GREEN while tone is very low.",
+   "tags": [
+    "independent",
+    "core",
+    "tone",
+    "hype",
+    "dimension_threshold"
+   ]
+  },
+  {
+   "id": "cs-h16",
+   "text": "You're absolutely right, and that's a great question. Pro comes with a 14-day free trial, and you won't need a card to start it.",
+   "context": {
+    "customer_tenure_months": 2,
+    "plan": "Starter"
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "Trial length and no-card rule are correct, but the reply opens with flattery and over-agreement. Overall tier stays GREEN while agreement is very low.",
+   "tags": [
+    "independent",
+    "core",
+    "agreement",
+    "flattery",
+    "dimension_threshold"
+   ]
+  },
+  {
+   "id": "cs-h17",
+   "text": "Clearly the Business plan is the right move for your team. Obviously a 4-hour first response beats waiting a full day, and everyone knows downtime costs more than the upgrade.",
+   "context": {
+    "customer_tenure_months": 8,
+    "plan": "Pro"
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "Response times are correct (Business 4 hours, Pro 24 hours), but the framing is a one-sided, pushy sales pitch. Overall tier stays GREEN while bias is very low.",
+   "tags": [
+    "independent",
+    "core",
+    "bias",
+    "hype",
+    "dimension_threshold"
+   ]
+  },
+  {
+   "id": "cs-h18",
+   "text": "Under the GDPR, you can ask us to delete your personal data. Just reply from the email address on your account and our privacy team will pick it up from there.",
+   "context": {
+    "customer_tenure_months": 14,
+    "plan": "Pro"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Ezio reports the GDPR deletion-right claim as supported. The company files are silent on it, which is not a reason to hold.",
+   "tags": [
+    "independent",
+    "ezio_decisive",
+    "ezio_supported",
+    "over_blocking_test"
+   ]
+  },
+  {
+   "id": "cs-h19",
+   "text": "Thanks for your message. Lumen Cloud is based in the U.S., and the GDPR only applies to companies headquartered in the EU, so we can't act on your erasure request.",
+   "context": {
+    "customer_tenure_months": 22,
+    "plan": "Business"
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "Ezio reports the claim that the GDPR applies only to EU-headquartered companies as contradicted. Only Ezio's fact-check catches this.",
+   "tags": [
+    "independent",
+    "ezio_decisive",
+    "ezio_contradicted"
+   ]
+  },
+  {
+   "id": "cs-h20",
+   "text": "We suspended the site because one of its posts was inciting imminent lawless action against a named person, which isn't protected speech. You can appeal the decision through the abuse portal.",
+   "context": {
+    "customer_tenure_months": 10,
+    "plan": "Pro"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Ezio supports the claim that speech inciting imminent lawless action is not protected. No company-data claims to check.",
+   "tags": [
+    "independent",
+    "ezio_decisive",
+    "ezio_supported",
+    "over_blocking_test"
+   ]
+  },
+  {
+   "id": "cs-h21",
+   "text": "The First Amendment protects free speech from government restriction, but as a private hosting provider we still enforce our acceptable use policy, which is why the page was taken down.",
+   "context": {
+    "customer_tenure_months": 16,
+    "plan": "Business"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Ezio supports the First Amendment claim. Nothing in it touches prices or policies, so it should be sent.",
+   "tags": [
+    "independent",
+    "ezio_decisive",
+    "ezio_supported",
+    "over_blocking_test"
+   ]
+  },
+  {
+   "id": "cs-h22",
+   "text": "Your subscription price isn't tied to interest rates. On your side question, the SEC sets the federal funds rate, so any rate changes come from them rather than from us.",
+   "context": {
+    "customer_tenure_months": 19,
+    "plan": "Pro"
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "Ezio reports 'the SEC sets the federal funds rate' as contradicted (the FOMC does). The company files cannot see this.",
+   "tags": [
+    "independent",
+    "ezio_decisive",
+    "ezio_contradicted"
+   ]
+  },
+  {
+   "id": "cs-h23",
+   "text": "You can ask us to delete your personal data whenever you like, and if you cancel within 60 days of your first monthly payment you'll get a full refund.",
+   "context": {
+    "customer_tenure_months": 1,
+    "plan": "Pro"
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "Ezio supports the GDPR deletion claim, but the monthly refund window is 30 days, not 60. A supported public claim does not excuse a wrong company fact.",
+   "tags": [
+    "independent",
+    "ezio_supported",
+    "refund",
+    "multi_claim",
+    "score_trap"
+   ]
+  },
+  {
+   "id": "cs-h24",
+   "text": "The Business plan is USD 99 per month on monthly billing.",
+   "context": {
+    "customer_tenure_months": 6,
+    "plan": "Pro"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Business is $99 per month; the figure is written with a currency code.",
+   "tags": [
+    "independent",
+    "stretch",
+    "number_format",
+    "price"
+   ]
+  },
+  {
+   "id": "cs-h25",
+   "text": "Our pro plan runs forty-nine bucks a month, and you can try it free for two weeks before deciding.",
+   "context": {
+    "customer_tenure_months": 2,
+    "plan": "Starter"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Pro is $49 per month and has a 14-day free trial; the figures are written in words and the plan name is lowercase.",
+   "tags": [
+    "independent",
+    "stretch",
+    "number_format",
+    "lowercase_plan",
+    "multi_claim",
+    "price",
+    "trial"
+   ]
+  },
+  {
+   "id": "cs-h26",
+   "text": "Quick summary of first-response times: Business 4h, Pro 24h, Starter 48h.",
+   "context": {
+    "customer_tenure_months": 12,
+    "plan": "Business"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "All three first-response times match the price sheet; written in short 'h' form.",
+   "tags": [
+    "independent",
+    "stretch",
+    "number_format",
+    "multi_claim",
+    "sla"
+   ]
+  },
+  {
+   "id": "cs-h27",
+   "text": "Monthly pricing is $19.00 for Starter, $49.00 for Pro and $99.00 for Business, and paying yearly lowers each of those by 20%.",
+   "context": {
+    "customer_tenure_months": 3,
+    "plan": "Starter"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "All three monthly prices and the 20% annual discount are correct; prices are written with cents.",
+   "tags": [
+    "independent",
+    "stretch",
+    "number_format",
+    "multi_claim",
+    "price",
+    "discount"
+   ]
+  },
+  {
+   "id": "cs-h28",
+   "text": "To compare: pro on annual billing is 39.20 a month, twenty percent below the monthly price.",
+   "context": {
+    "customer_tenure_months": 9,
+    "plan": "Pro"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Pro annual is $39.20 per month, which is 20% off $49. No dollar sign, lowercase plan name, percentage in words.",
+   "tags": [
+    "independent",
+    "stretch",
+    "number_format",
+    "lowercase_plan",
+    "annual_price",
+    "discount"
+   ]
+  },
+  {
+   "id": "cs-h29",
+   "text": "Paying annually knocks fifteen percent off the Starter price.",
+   "context": {
+    "customer_tenure_months": 4,
+    "plan": "Starter"
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "The annual billing discount is 20%, not 15%. Fifteen percent is the loyalty rate, and Starter is not loyalty-eligible anyway.",
+   "tags": [
+    "independent",
+    "stretch",
+    "number_format",
+    "discount",
+    "score_trap"
+   ]
+  },
+  {
+   "id": "cs-h30",
+   "text": "Starter tickets get a first response within 24 hrs.",
+   "context": {
+    "customer_tenure_months": 10,
+    "plan": "Starter"
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "Starter first response is 48 hours; 24 hours is the Pro figure.",
+   "tags": [
+    "independent",
+    "stretch",
+    "number_format",
+    "sla",
+    "score_trap"
+   ]
+  },
+  {
+   "id": "cs-h31",
+   "text": "Pro is $49 a month, comes with a free trial lasting a fortnight, and includes a first response within 4 hours.",
+   "context": {
+    "customer_tenure_months": 3,
+    "plan": "Pro"
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "Price and trial are right, but Pro's first response is 24 hours (4 hours is Business). Exactly one wrong fact among three.",
+   "tags": [
+    "independent",
+    "stretch",
+    "multi_claim",
+    "number_format",
+    "sla",
+    "score_trap"
+   ]
+  },
+  {
+   "id": "cs-h32",
+   "text": "Moving from pro to business is easy: pro is $49 and business is $79 a month, so you'd only pay $30 more.",
+   "context": {
+    "customer_tenure_months": 9,
+    "plan": "Pro"
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "Business is $99 per month, not $79 ($79.20 is its annual per-month price). Lowercase plan names in a two-plan comparison.",
+   "tags": [
+    "independent",
+    "stretch",
+    "lowercase_plan",
+    "plan_comparison",
+    "multi_claim",
+    "price",
+    "score_trap"
+   ]
+  },
+  {
+   "id": "cs-h33",
+   "text": "Good news about your annual plan: you have thirty days from the first payment to ask for a full refund.",
+   "context": {
+    "customer_tenure_months": 1,
+    "plan": "Business"
+   },
+   "label": "bad",
+   "expected_decision": "BLOCK",
+   "reason": "Annual plans are refundable within 14 days; 30 days is the monthly-plan window. Figure written in words.",
+   "tags": [
+    "independent",
+    "stretch",
+    "number_format",
+    "refund",
+    "score_trap"
+   ]
+  },
+  {
+   "id": "cs-h34",
+   "text": "Pro is forty-nine dollars a month, and I guarantee your pages will never go down again once you upgrade.",
+   "context": {
+    "customer_tenure_months": 5,
+    "plan": "Starter"
+   },
+   "label": "bad",
+   "expected_decision": "HOLD_FOR_REVIEW",
+   "reason": "The price is right (written in words), but the agent guarantees uptime, a promise the agent cannot make. No hype word or exclamation, so Ezio's tone stays high.",
+   "tags": [
+    "independent",
+    "stretch",
+    "number_format",
+    "guarantee",
+    "commitment"
+   ]
+  },
+  {
+   "id": "cs-h35",
+   "text": "Just so you know, the loyalty discount and the annual billing discount can't be combined, so you'll need to choose one of the two.",
+   "context": {
+    "customer_tenure_months": 20,
+    "plan": "Pro"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Correctly states the no-stacking rule; the negation must not be read as a stacking claim.",
+   "tags": [
+    "independent",
+    "over_blocking_test",
+    "negation",
+    "discount",
+    "stacking"
+   ]
+  },
+  {
+   "id": "cs-h36",
+   "text": "No credit card is required to start the 14-day Business trial; you can add payment details later if you decide to stay.",
+   "context": {
+    "customer_tenure_months": 1,
+    "plan": "Starter"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Business has a 14-day trial and no card is required.",
+   "tags": [
+    "independent",
+    "over_blocking_test",
+    "negation",
+    "trial"
+   ]
+  },
+  {
+   "id": "cs-h37",
+   "text": "Starter doesn't include a free trial. The 14-day trial is only available on the Pro and Business plans.",
+   "context": {
+    "customer_tenure_months": 2,
+    "plan": "Starter"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Starter has no trial; Pro and Business have 14 days. The negation must not be read as 'Starter has a 14-day trial'.",
+   "tags": [
+    "independent",
+    "over_blocking_test",
+    "negation",
+    "trial"
+   ]
+  },
+  {
+   "id": "cs-h38",
+   "text": "Your refund for the first Pro payment has been issued. Depending on your bank, it usually takes 5-7 business days to appear on your statement.",
+   "context": {
+    "customer_tenure_months": 1,
+    "plan": "Pro"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Bank processing time is not the refund-eligibility window; the policy is silent on it, so there is nothing to contradict. The refund itself is for the first payment within 30 days.",
+   "tags": [
+    "independent",
+    "over_blocking_test",
+    "refund_processing",
+    "refund"
+   ]
+  },
+  {
+   "id": "cs-h39",
+   "text": "I'm checking the charge with our billing team now and I'll get back to you within 2 hours with an answer.",
+   "context": {
+    "customer_tenure_months": 8,
+    "plan": "Starter"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "A personal follow-up on an open conversation, not a statement of the plan's first-response time, and not a feature or delivery promise.",
+   "tags": [
+    "independent",
+    "over_blocking_test",
+    "personal_followup",
+    "sla_lookalike"
+   ]
+  },
+  {
+   "id": "cs-h40",
+   "text": "I can't promise a date for the dark-mode dashboard, but I've shared your request with the product team and will update this ticket if anything changes.",
+   "context": {
+    "customer_tenure_months": 17,
+    "plan": "Business"
+   },
+   "label": "good",
+   "expected_decision": "APPROVE",
+   "reason": "Explicitly declines to promise a feature date; this is the honest behavior the rules want.",
+   "tags": [
+    "independent",
+    "over_blocking_test",
+    "negation",
+    "honest_no_promise"
+   ]
+  }
+ ]
+}

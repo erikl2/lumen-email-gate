@@ -32,7 +32,8 @@ Screenshots are in `docs/screenshots/`.
 
 ## Results
 - Practice set: **16/16 exact, 8/8 caught, 0/8 false blocks**. Failure drills: **15/15** (down, rate-limited, server error, malformed, unavailable, slow).
-- Our own 74 new drafts, written from the business rules (not the practice texts): **74/74**, 42/42 bad caught, 0/32 false blocks.
+- Generality set ([`eval/generality_set.json`](eval/generality_set.json), run with `python3 eval/run_eval.py`): **114/114 exact, 62/62 bad caught, 0/52 false blocks**.
+  It holds 74 drafts we wrote from the business rules, plus 40 written by a separate agent that never saw our code. These include stretch formats, multi-fact sentences, over-blocking traps and Ezio-decisive items.
 - Final run: see `results/<team>.json` and `results/<team>.report.md` (submitted unchanged).
 
 ## How we built it
@@ -45,7 +46,7 @@ Screenshots are in `docs/screenshots/`.
 Built during the event window with **Claude Code (Claude Opus 5.5)**, which wrote code, tests and docs under our direction. We verified everything:
 - the starter's own tests;
 - `gate.py practice` after every change;
-- two batches of novel, self-labeled drafts run through the real mock;
+- a 114-draft generality set (40 of them written independently, without seeing our code) run through the real mock;
 - live browser tests of the page;
 - a scan confirming that no practice text is embedded in our code.
 

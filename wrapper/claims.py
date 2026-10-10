@@ -660,6 +660,20 @@ class Checker:
                           f"{fig.text} doesn't match any plan's first-response time and no plan is named.", stated=fig.text,
                           expected=", ".join(f"{p} {fmt_num(v)}h" for p, v in self.response_h.items()), source="price_sheet.csv › first_response_hours")]
         bad = [p for p in plans if not close(hours, self.response_h[p], 0.01)]
+        if bad and how in ("previous sentence", "customer's plan"):
+            # No plan named in this sentence, so the plan is inferred; the figure may describe another plan in a comparison
+            # ("a 4-hour response beats waiting a full day"). Strict only when the plan is named next to the figure.
+            cplan = str(context.get("plan", "")).strip().capitalize()
+            if cplan in self.response_h and close(hours, self.response_h[cplan], 0.01):
+                return [Claim("response_hours", f"{cplan} first-response time", span, fig.text, VERIFIED,
+                              f"{fig.text} matches the customer's current {cplan} plan ({fmt_num(self.response_h[cplan])} hours).",
+                              plan=cplan, stated=fig.text, expected=f"{fmt_num(self.response_h[cplan])} hours", source=f"price_sheet.csv › {cplan} › first_response_hours")]
+            others = [q for q, v in self.response_h.items() if close(hours, v, 0.01)]
+            if others:
+                return [Claim("response_hours", "First-response time (plan unclear)", span, fig.text, REVIEW,
+                              f"{fig.text} is the {others[0]} first-response time, but this sentence doesn't say which plan it means (it reads as {bad[0]}).",
+                              plan=others[0], stated=fig.text, expected=", ".join(f"{q} {fmt_num(v)}h" for q, v in self.response_h.items()),
+                              source="price_sheet.csv › first_response_hours")]
         if bad:
             p = bad[0]
             return [Claim("response_hours", f"{p} first-response time", span, fig.text, CONTRADICTED,

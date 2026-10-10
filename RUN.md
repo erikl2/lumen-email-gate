@@ -16,6 +16,9 @@ python3 gate.py practice --persona customer_support
 # 3. The persona page (mock + wrapper + UI). Open the printed address, then Ctrl-C to stop.
 python3 gate.py serve --persona customer_support
 
+# 3b. Our 114-draft generality set (self-labeled + independently written), through the real mock
+python3 eval/run_eval.py          # add -v to print every row
+
 # 4. One input through the gate, with its mock action (writes wrapper/audit_log.jsonl and wrapper/actions.log)
 python3 gate.py try --persona customer_support "The Business plan is \$79 per month." \
     --context '{"plan":"Starter","customer_tenure_months":8}'

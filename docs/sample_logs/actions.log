@@ -1,0 +1,1 @@
+{"time": "2026-10-10T20:49:40+00:00", "action": "send_email", "args": {"to": "customer@example.com", "subject": "Re: your question", "body": "Thanks for your patience! Pro is $49 a month, and since you've been with us 18 months, your 15% loyalty discount applies."}}
