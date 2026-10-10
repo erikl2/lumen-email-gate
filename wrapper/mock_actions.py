@@ -28,8 +28,14 @@ def publish_note_to_client(note):
     _record("publish_note_to_client", note=note)
 
 
-def run_for_persona(persona, text):
-    if persona == "customer_support":
+ACTION_NAMES = {"customer_support": "send_email", "paralegal": "submit_memo_to_partner", "financial_analyst": "publish_note_to_client"}
+
+
+def run_for_persona(persona, text, approved_by=None):
+    """approved_by is set only when a human reviewer released a held draft (recorded in the action's args)."""
+    if approved_by and persona == "customer_support":
+        _record("send_email", to="customer@example.com", subject="Re: your question", body=text, approved_by=approved_by)
+    elif persona == "customer_support":
         send_email("customer@example.com", "Re: your question", text)
     elif persona == "paralegal":
         submit_memo_to_partner(text)

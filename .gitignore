@@ -8,3 +8,10 @@ __pycache__/
 *.jsonl
 runs/
 results/*.practice.*
+results/*.practice.*
+runs/
+wrapper/audit_log.jsonl
+wrapper/actions.log
+wrapper/reviews.jsonl
+__pycache__/
+.DS_Store
