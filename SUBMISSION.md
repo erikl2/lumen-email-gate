@@ -1,7 +1,7 @@
 # Devpost submission: Approval Gate track
 
 **Project name:** Lumen Cloud Outbound Email Gate
-**Team:** `<team name>` · Members: `<names>`
+**Team:** Precognition · Members: `<names>`
 **Track:** Approval Gate · **Persona:** Customer support lead · **Gated action:** `send_email(to, subject, body)`
 
 ## One-liner
@@ -34,7 +34,7 @@ Screenshots are in `docs/screenshots/`.
 - Practice set: **16/16 exact, 8/8 caught, 0/8 false blocks**. Failure drills: **15/15** (down, rate-limited, server error, malformed, unavailable, slow).
 - Generality set ([`eval/generality_set.json`](eval/generality_set.json), run with `python3 eval/run_eval.py`): **114/114 exact, 62/62 bad caught, 0/52 false blocks**.
   It holds 74 drafts we wrote from the business rules, plus 40 written by a separate agent that never saw our code. These include stretch formats, multi-fact sentences, over-blocking traps and Ezio-decisive items.
-- Final run: see `results/<team>.json` and `results/<team>.report.md` (submitted unchanged).
+- Final run ([`results/Precognition.json`](results/Precognition.json), [`results/Precognition.report.md`](results/Precognition.report.md), submitted unchanged): **50.0/50 measured** — core 6/6 caught, 0/6 false blocks, 12/12 exact; stretch 6/6; failure drills 6/6.
 
 ## How we built it
 - Python 3.9 standard library only.

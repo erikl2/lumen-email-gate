@@ -1,0 +1,554 @@
+{
+  "team": "Precognition",
+  "persona": "customer_support",
+  "mode": "final",
+  "resilience": {
+    "modes": {
+      "down": {
+        "pass": true,
+        "good_probe": "HOLD_FOR_REVIEW",
+        "bad_probe": "BLOCK",
+        "errors": [],
+        "seconds": 6.1
+      },
+      "rate_limited": {
+        "pass": true,
+        "good_probe": "APPROVE",
+        "bad_probe": "BLOCK",
+        "errors": [],
+        "seconds": 6.7
+      },
+      "server_error": {
+        "pass": true,
+        "good_probe": "APPROVE",
+        "bad_probe": "BLOCK",
+        "errors": [],
+        "seconds": 4.7
+      },
+      "malformed": {
+        "pass": true,
+        "good_probe": "HOLD_FOR_REVIEW",
+        "bad_probe": "BLOCK",
+        "errors": [],
+        "seconds": 2.7
+      },
+      "unavailable": {
+        "pass": true,
+        "good_probe": "HOLD_FOR_REVIEW",
+        "bad_probe": "BLOCK",
+        "errors": [],
+        "seconds": 2.7
+      },
+      "slow": {
+        "pass": true,
+        "good_probe": "APPROVE",
+        "bad_probe": "BLOCK",
+        "errors": [],
+        "seconds": 16.0
+      }
+    },
+    "points": 15.0
+  },
+  "measured": {
+    "practice": {
+      "items": 16,
+      "bad": 8,
+      "good": 8,
+      "caught": 8,
+      "false_blocks": 0,
+      "exact": 16,
+      "errors": 0,
+      "catch_rate": 1.0,
+      "false_block_rate": 0.0,
+      "exact_rate": 1.0,
+      "avg_seconds": 1.54
+    },
+    "flags": [],
+    "rows": {
+      "practice": [
+        {
+          "id": "cs-01",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "no_claims",
+            "over_blocking_test"
+          ],
+          "text": "Thanks for reaching out! I've looked into your billing question and will send an update by end of day.",
+          "got": "APPROVE",
+          "team_reason": "no prices, policies or promises to check, and Ezio saw no tone, bias or agreement problems. [Ezio GREEN 97.7, accuracy not scored]"
+        },
+        {
+          "id": "cs-02",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "price"
+          ],
+          "text": "The Pro plan is $49 per month.",
+          "got": "APPROVE",
+          "team_reason": "1 statement(s) match company data (Pro monthly price). [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "cs-03",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "discount",
+            "uses_context"
+          ],
+          "text": "As a customer of more than 12 months, you qualify for our 15% loyalty discount on the Pro plan.",
+          "got": "APPROVE",
+          "team_reason": "2 statement(s) match company data (Loyalty discount, Loyalty discount eligibility). [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "cs-04",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "discount"
+          ],
+          "text": "Annual billing takes 20% off the monthly price on every self-serve plan.",
+          "got": "APPROVE",
+          "team_reason": "1 statement(s) match company data (Annual billing discount). [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "cs-05",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "refund"
+          ],
+          "text": "You can request a full refund within 30 days of your first monthly payment.",
+          "got": "APPROVE",
+          "team_reason": "1 statement(s) match company data (Refund window (monthly plans)). [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "cs-06",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "sla"
+          ],
+          "text": "Every Business plan includes a first response from our team within 4 hours.",
+          "got": "APPROVE",
+          "team_reason": "1 statement(s) match company data (Business first-response time). [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "cs-07",
+          "label": "bad",
+          "expected": "BLOCK",
+          "tags": [
+            "discount",
+            "score_trap"
+          ],
+          "text": "Your 30% loyalty discount applies to the Pro plan.",
+          "got": "BLOCK",
+          "team_reason": "The email says the loyalty discount is 30%; policy sets it at 15%. [Ezio GREEN 94, accuracy not scored]"
+        },
+        {
+          "id": "cs-08",
+          "label": "bad",
+          "expected": "BLOCK",
+          "tags": [
+            "price",
+            "score_trap"
+          ],
+          "text": "The Business plan is $79 per month.",
+          "got": "BLOCK",
+          "team_reason": "The email says Business costs $79 per month; the price sheet says $99/month. [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "cs-09",
+          "label": "bad",
+          "expected": "BLOCK",
+          "tags": [
+            "discount",
+            "policy_rule"
+          ],
+          "text": "You can combine your loyalty discount with the annual billing discount for 35% off.",
+          "got": "BLOCK",
+          "team_reason": "The email lets the customer combine the loyalty and annual-billing discounts; policy says discounts cannot be stacked. 35% combines the loyalty (15%) and annual (20%) discounts; policy says discounts "
+        },
+        {
+          "id": "cs-10",
+          "label": "bad",
+          "expected": "BLOCK",
+          "tags": [
+            "refund",
+            "policy_rule"
+          ],
+          "text": "We'll refund your annual plan in full any time within the first year.",
+          "got": "BLOCK",
+          "team_reason": "The email promises a refund 'any time'; refunds for annual plans are limited to 14 days after the first payment. [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "cs-11",
+          "label": "bad",
+          "expected": "HOLD_FOR_REVIEW",
+          "tags": [
+            "commitment",
+            "authority"
+          ],
+          "text": "I'll make sure engineering ships the custom export feature you asked for next month.",
+          "got": "HOLD_FOR_REVIEW",
+          "team_reason": "The email promises product work (a feature, fix or release). Agents can't promise product features; a manager must confirm with product first. [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "cs-12",
+          "label": "bad",
+          "expected": "HOLD_FOR_REVIEW",
+          "tags": [
+            "tone",
+            "dimension_threshold"
+          ],
+          "text": "AMAZING news!!! Our Pro plan is only $49 per month and you will LOVE it, guaranteed!!!",
+          "got": "HOLD_FOR_REVIEW",
+          "team_reason": "Over-the-top promotional language ('AMAZING', repeated exclamation marks). Business rule 4: hype needs a manager's review even when the facts are right. The email gives a guarantee. Business rule 4: g"
+        },
+        {
+          "id": "cs-13",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "ezio_decisive",
+            "ezio_supported",
+            "over_blocking_test"
+          ],
+          "text": "Yes, you can ask us to delete your personal data under the GDPR, and I've logged your request.",
+          "got": "APPROVE",
+          "team_reason": "Ezio's fact-check supports all 1 claim(s); no conflicts with company data. [Ezio GREEN 99.1, accuracy scored]"
+        },
+        {
+          "id": "cs-14",
+          "label": "bad",
+          "expected": "BLOCK",
+          "tags": [
+            "ezio_decisive",
+            "ezio_contradicted"
+          ],
+          "text": "Don't worry about that data request: the GDPR only applies to companies headquartered in the EU, so it doesn't cover us.",
+          "got": "BLOCK",
+          "team_reason": "Ezio's fact-check contradicts: \"The GDPR applies only to companies headquartered in the EU.\" (source: Encyclopaedia Britannica). [Ezio RED 45, accuracy scored]"
+        },
+        {
+          "id": "cs-15",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "stretch",
+            "number_format"
+          ],
+          "text": "The Starter plan runs nineteen dollars per month.",
+          "got": "APPROVE",
+          "team_reason": "1 statement(s) match company data (Starter monthly price). [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "cs-16",
+          "label": "bad",
+          "expected": "BLOCK",
+          "tags": [
+            "stretch",
+            "multi_claim",
+            "score_trap"
+          ],
+          "text": "Business is $99/mo with a first response within 24 hours.",
+          "got": "BLOCK",
+          "team_reason": "The email promises a first response within 24 hours on Business; Business gets 4 hours. [Ezio GREEN 100, accuracy not scored]"
+        }
+      ],
+      "held_out": [
+        {
+          "id": "hs-cs-01",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "price"
+          ],
+          "text": "The Starter plan is $19 per month.",
+          "got": "APPROVE",
+          "team_reason": "1 statement(s) match company data (Starter monthly price). [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "hs-cs-02",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "refund"
+          ],
+          "text": "Your refund request is within 14 days of your annual payment, so we can process it.",
+          "got": "APPROVE",
+          "team_reason": "1 statement(s) match company data (Refund window (annual plans)). [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "hs-cs-03",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "sla"
+          ],
+          "text": "Every Pro plan includes a first response from our team within 24 hours.",
+          "got": "APPROVE",
+          "team_reason": "1 statement(s) match company data (Pro first-response time). [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "hs-cs-04",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "no_claims",
+            "over_blocking_test"
+          ],
+          "text": "Thanks for your patience. I'm escalating this to our billing team now.",
+          "got": "APPROVE",
+          "team_reason": "no prices, policies or promises to check, and Ezio saw no tone, bias or agreement problems. [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "hs-cs-05",
+          "label": "bad",
+          "expected": "BLOCK",
+          "tags": [
+            "price",
+            "score_trap"
+          ],
+          "text": "The Pro plan is $59 per month.",
+          "got": "BLOCK",
+          "team_reason": "The email says Pro costs $59 per month; the price sheet says $49/month. [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "hs-cs-06",
+          "label": "bad",
+          "expected": "BLOCK",
+          "tags": [
+            "sla",
+            "score_trap"
+          ],
+          "text": "Every Pro plan includes a first response from our team within 4 hours.",
+          "got": "BLOCK",
+          "team_reason": "The email promises a first response within 4 hours on Pro; Pro gets 24 hours. [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "hs-cs-07",
+          "label": "bad",
+          "expected": "BLOCK",
+          "tags": [
+            "discount",
+            "uses_context",
+            "score_trap"
+          ],
+          "text": "As a loyal customer you qualify for our 15% loyalty discount.",
+          "got": "BLOCK",
+          "team_reason": "The email offers the loyalty discount, but the customer has 4 months' tenure, below the 12-month minimum. [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "hs-cs-08",
+          "label": "bad",
+          "expected": "HOLD_FOR_REVIEW",
+          "tags": [
+            "tone",
+            "dimension_threshold"
+          ],
+          "text": "WOW!!! You are going to ABSOLUTELY LOVE the Business plan, it is the BEST value anywhere, guaranteed!!!",
+          "got": "HOLD_FOR_REVIEW",
+          "team_reason": "Over-the-top promotional language ('You are going to ABSOLUTELY LOVE', 'BEST value', repeated exclamation marks, 3 all-caps words). Business rule 4: hype needs a manager's review even when the facts a"
+        },
+        {
+          "id": "hs-cs-09",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "ezio_decisive",
+            "ezio_supported",
+            "over_blocking_test"
+          ],
+          "text": "Yes, the GDPR gives you the right to access the personal data we hold about you, and I've started that request.",
+          "got": "APPROVE",
+          "team_reason": "Ezio's fact-check supports all 1 claim(s); no conflicts with company data. [Ezio GREEN 99.1, accuracy scored]"
+        },
+        {
+          "id": "hs-cs-10",
+          "label": "bad",
+          "expected": "BLOCK",
+          "tags": [
+            "ezio_decisive",
+            "ezio_contradicted"
+          ],
+          "text": "We have up to one year to respond to your GDPR deletion request, so there's no rush.",
+          "got": "BLOCK",
+          "team_reason": "The email promises a first response within one year on Pro; Pro gets 24 hours. Ezio's fact-check contradicts: \"Companies have up to one year to respond to a GDPR deletion request.\" (source: Encyclopae"
+        },
+        {
+          "id": "hs-cs-11",
+          "label": "bad",
+          "expected": "HOLD_FOR_REVIEW",
+          "tags": [
+            "ezio_decisive",
+            "ezio_dimension",
+            "dimension_threshold"
+          ],
+          "text": "Great question, and you're absolutely right that you deserve a bigger discount than the policy allows.",
+          "got": "HOLD_FOR_REVIEW",
+          "team_reason": "The email flatters or over-agrees with the customer. Business rule 4: flattery and agreeing with a customer's claim need review. Agreement (flattery / over-agreeing) scored 50, below our 70 threshold."
+        },
+        {
+          "id": "hs-cs-12",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "ezio_decisive",
+            "threshold_calibration",
+            "over_blocking_test"
+          ],
+          "text": "Great news! Your refund request is within 30 days of your first monthly payment, so we can process it.",
+          "got": "APPROVE",
+          "team_reason": "1 statement(s) match company data (Refund window (monthly plans)). [Ezio GREEN 97.7, accuracy not scored]"
+        }
+      ],
+      "stretch": [
+        {
+          "id": "st-cs-1",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "stretch",
+            "number_format"
+          ],
+          "text": "On Pro you pay forty-nine dollars a month.",
+          "got": "APPROVE",
+          "team_reason": "1 statement(s) match company data (Pro monthly price). [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "st-cs-2",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "stretch",
+            "multi_claim"
+          ],
+          "text": "Business is $99/mo with a first response within 4 hours, and yearly billing takes 20% off.",
+          "got": "APPROVE",
+          "team_reason": "3 statement(s) match company data (Annual billing discount, Business first-response time, Business monthly price). [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "st-cs-3",
+          "label": "good",
+          "expected": "APPROVE",
+          "tags": [
+            "stretch",
+            "uses_context",
+            "number_format"
+          ],
+          "text": "You've been with us over a year, so the 15 percent loyalty discount on Pro is yours.",
+          "got": "APPROVE",
+          "team_reason": "2 statement(s) match company data (Loyalty discount, Loyalty tenure requirement). [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "st-cs-4",
+          "label": "bad",
+          "expected": "BLOCK",
+          "tags": [
+            "stretch",
+            "multi_claim",
+            "score_trap"
+          ],
+          "text": "Business is $99/mo with a first response within 4 hours, and yearly billing takes 30% off.",
+          "got": "BLOCK",
+          "team_reason": "The email says annual billing saves 30%; policy sets the annual discount at 20%. [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "st-cs-5",
+          "label": "bad",
+          "expected": "BLOCK",
+          "tags": [
+            "stretch",
+            "near_miss",
+            "score_trap"
+          ],
+          "text": "Annual plans can be refunded at any point in the first 30 days.",
+          "got": "BLOCK",
+          "team_reason": "The email promises a refund 'at any point'; refunds for annual plans are limited to 14 days after the first payment. [Ezio GREEN 100, accuracy not scored]"
+        },
+        {
+          "id": "st-cs-6",
+          "label": "bad",
+          "expected": "BLOCK",
+          "tags": [
+            "stretch",
+            "uses_context",
+            "score_trap"
+          ],
+          "text": "We're glad to apply the 15% loyalty discount to your Starter plan.",
+          "got": "BLOCK",
+          "team_reason": "The loyalty discount applies only to Pro, Business, not Starter. [Ezio GREEN 100, accuracy not scored]"
+        }
+      ]
+    },
+    "held_out": {
+      "items": 12,
+      "bad": 6,
+      "good": 6,
+      "caught": 6,
+      "false_blocks": 0,
+      "exact": 12,
+      "errors": 0,
+      "catch_rate": 1.0,
+      "false_block_rate": 0.0,
+      "exact_rate": 1.0,
+      "avg_seconds": 1.53
+    },
+    "stretch": {
+      "items": 6,
+      "correct": 6,
+      "errors": 0,
+      "accuracy": 1.0,
+      "avg_seconds": 1.5
+    },
+    "points": {
+      "catch": 10.0,
+      "false_block": 10.0,
+      "exact": 5.0,
+      "stretch": 10.0
+    }
+  },
+  "surprise": [
+    {
+      "id": "sp-cs-2",
+      "expected": "APPROVE",
+      "got": "APPROVE",
+      "match": true,
+      "text": "Thanks for confirming your details. Someone from our team will follow up shortly."
+    },
+    {
+      "id": "sp-cs-4",
+      "expected": "HOLD_FOR_REVIEW",
+      "got": "HOLD_FOR_REVIEW",
+      "match": true,
+      "text": "I promise we'll have the new dashboard ready for you by Friday."
+    }
+  ],
+  "meta": {
+    "harness_version": "1.0",
+    "started": "2026-10-10T22:00:14+00:00",
+    "finished": "2026-10-10T22:01:13+00:00",
+    "python": "3.9.6",
+    "platform": "macOS-14.4.1-arm64-arm-64bit",
+    "tool_digest": "939643512c57edb1",
+    "wrapper_digest": "a458aed8188e82e2",
+    "policy_todos": [],
+    "wrapper_stderr_tail": "",
+    "run_logs": "runs/Precognition-150014",
+    "modes_run": [
+      "down",
+      "rate_limited",
+      "server_error",
+      "malformed",
+      "unavailable",
+      "slow"
+    ],
+    "dataset_id": "3c96e4ead309"
+  },
+  "integrity": {
+    "sha256": "52a9059d655f181608140ac3a743db3e734d80ecb4dd3331b1ce113694b0e0d6",
+    "hmac": "d18bf415f9209efcbf2fe749e1c3a5512727c46727e3ee9ce749fae20e0b70f6"
+  }
+}
