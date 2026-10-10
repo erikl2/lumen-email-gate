@@ -3,8 +3,8 @@
 Requirements: Python 3.9+ (standard library only), a browser. Everything runs on `127.0.0.1`; there is no network access and nothing to install.
 
 ```bash
-git clone <this repository> Approval-Gate && cd Approval-Gate
-git checkout entry            # our work; branch history starts from the official starter commit fa098c4
+git clone https://github.com/erikl2/lumen-email-gate.git && cd lumen-email-gate
+# history starts from the official starter commit fa098c4 ("Approval-Gate-V2"); our work is the commits after it
 
 # 1. Infrastructure tests (unchanged starter tests)
 python3 test_mock.py
