@@ -131,7 +131,13 @@ input[type="number"], input[type="text"], select, textarea {
 textarea { resize: vertical; min-height: 9rem; line-height: 1.5; }
 fieldset.context { border: 1px solid var(--border); border-radius: 8px; padding: .6rem .8rem 0; margin: 0 0 .9rem; }
 fieldset.context legend { font-weight: 600; font-size: .88rem; padding: 0 .3rem; }
-fieldset.context legend .muted { font-weight: 400; }
+.context-hint { margin: 0 0 .5rem; }
+@media (max-width: 480px) {
+  .banner { gap: .2rem .7rem; padding: .85rem .9rem; }
+  .banner-icon { width: 2.2rem; height: 2.2rem; font-size: 1.1rem; grid-row: span 1; }
+  .banner-headline, .banner-reason, .banner-meta { grid-column: 1 / -1; }
+  .kbd-hint { display: none; }
+}
 .counter { font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 .counter.over { color: var(--block); font-weight: 700; }
 .hint { font-size: .82rem; color: var(--muted); }
@@ -263,6 +269,7 @@ tr.row-ok td:first-child { box-shadow: inset 3px 0 0 var(--ok); }
 /* checks */
 .checks { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
 .checks li { display: grid; grid-template-columns: 7.2rem 1fr; gap: .6rem; align-items: start; padding: .45rem .55rem; border: 1px solid var(--border); border-radius: 8px; }
+.checks .pill { justify-self: start; }
 .checks .cname { font-weight: 600; }
 .checks .cdetail { display: block; color: var(--muted); font-size: .85rem; }
 @media (max-width: 480px) { .checks li { grid-template-columns: 1fr; } }

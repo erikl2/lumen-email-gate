@@ -215,7 +215,7 @@ PERCENT_PATTERNS = [
 FRACTIONS = {"half": 50, "a half": 50, "one half": 50, "a third": 100 / 3, "one third": 100 / 3, "a quarter": 25,
              "one quarter": 25, "a fifth": 20, "one fifth": 20, "one-fifth": 20, "a tenth": 10, "one tenth": 10}
 FRACTION_RE = re.compile(r"\b(?P<frac>(?:a|one)[\s-](?:half|third|quarter|fifth|tenth)|half)\s+(?:off|price|the\s+price|discount)\b", re.I)
-DURATION_RE = re.compile(rf"\b(?P<num>{NUM}|a|an|one|single)[\s-]+(?P<unit>{DURATION_UNIT})\b", re.I)
+DURATION_RE = re.compile(rf"\b(?P<num>{NUM}|a|an|one|single|first)[\s-]+(?:(?:full|whole|entire|complete|calendar|additional|extra|more)[\s-]+)?(?P<unit>{DURATION_UNIT})\b", re.I)
 OPEN_ENDED_RE = re.compile(
     r"\b(?:any\s*time|at\s+any\s+(?:time|point)|whenever|no\s+matter\s+when|for\s+life|lifetime|indefinitely|forever|no\s+time\s+limit|"
     r"(?:within|during|in)\s+(?:the\s+)?(?:first|whole|entire|full)\s+(?:year|12\s+months|twelve\s+months)|"
@@ -287,7 +287,7 @@ def extract_figures(text):
         unit, mult = unit_of(m.group("unit"))
         if unit is None:
             continue
-        if raw in ARTICLES:
+        if raw in ARTICLES or raw == "first":
             n = 1.0
         else:
             n = parse_number(raw)
@@ -768,7 +768,7 @@ class Checker:
             card = CUES["card"].search(st)
             if card:
                 says_required = bool(re.search(r"\b(?:requir\w*|need\w*|must|ask\s+for|have\s+to|mandatory)\b", low))
-                neg = bool(re.search(r"\b(?:no|not|n't|without|never)\b[^.]{0,25}\b(?:card|requir|need)|\bno\s+(?:credit\s+)?card\b|card[^.]{0,20}\bnot\b", low))
+                neg = bool(re.search(r"(?:\b(?:no|not|without|never)\b|n't\b)[^.]{0,25}\b(?:card|requir|need)|\bno\s+(?:credit\s+)?card\b|card[^.]{0,20}(?:\bnot\b|n't\b)", low))
                 claims_required = says_required and not neg
                 verdict = CONTRADICTED if claims_required != self.card_required else VERIFIED
                 out.append(Claim("trial_card", "Card required for trial", [s0 + card.start(), s0 + card.end()], card.group(0), verdict,

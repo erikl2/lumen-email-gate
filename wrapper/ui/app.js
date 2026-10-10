@@ -220,7 +220,7 @@
     hint.textContent = empty
       ? "Write or paste the agent's draft to check it."
       : over
-        ? `Too long by ${(len - MAX_CHARS).toLocaleString()} characters. The gate accepts at most 20,000; trim the draft first.`
+        ? `Too long by ${(len - MAX_CHARS).toLocaleString()} character${len - MAX_CHARS === 1 ? "" : "s"}. The gate accepts at most 20,000; trim the draft first.`
         : "Ready. The gate checks prices, discounts, refunds, trials, response times, promises and tone.";
     $("#check").disabled = busy || over || empty;
     return !(over || empty);
@@ -822,6 +822,41 @@
     return el("div", { class: "policy-grid" }, boxes);
   }
 
+  // The gate's own policy.json (settings + one-sentence justifications), rendered read-only.
+  function policyRules(pol) {
+    if (!pol || typeof pol !== "object") return null;
+    const human = (k) => k.replace(/_/g, " ").replace(/^./, (c) => c.toUpperCase());
+    const setting = (v) => {
+      const m = DECISIONS[v];
+      if (m) return el("span", null, pill(m, m.short === "Approved" ? "Approve" : m.short === "Held" ? "Hold for review" : "Block"));
+      return str(v) === "ignore" ? "Ignore (not a reason to hold)" : str(v);
+    };
+    const rows = [];
+    for (const [k, v] of Object.entries(pol)) {
+      if (k.startsWith("_") || k.endsWith("_why")) continue;
+      if (k === "dimension_minimums" && v && typeof v === "object") {
+        for (const [dim, rule] of Object.entries(v)) {
+          rows.push([`${human(dim)} score`, `Hold below ${rule && rule.hold_below}`, rule && rule.why]);
+        }
+        continue;
+      }
+      const shown = v && typeof v === "object"
+        ? el("span", null, Object.entries(v).map(([a, b]) => el("span", { class: "sub" }, `${a} → `, setting(b))))
+        : setting(v);
+      rows.push([human(k), shown, pol[`${k}_why`]]);
+    }
+    if (!rows.length) return null;
+    return el("div", { class: "section" },
+      el("h3", null, "Why the gate decides this way"),
+      pol._help ? el("p", { class: "small muted" }, str(pol._help)) : null,
+      el("div", { class: "table-wrap" }, el("table", { class: "data stack" },
+        el("thead", null, el("tr", null, ["Rule", "Setting", "Why"].map((h) => el("th", { scope: "col" }, h)))),
+        el("tbody", null, rows.map(([name, value, why]) => el("tr", null,
+          el("td", { "data-label": "Rule" }, el("strong", null, name)),
+          el("td", { "data-label": "Setting" }, value),
+          el("td", { "data-label": "Why" }, str(why) || el("span", { class: "muted" }, "—"))))))));
+  }
+
   async function loadPolicy() {
     const body = $("#policy-body");
     const quick = $("#quickref-body");
@@ -829,7 +864,7 @@
       const data = await api("/api/policy", { timeout: 8000 });
       loaded.policy = true;
       const rows = arr(data && data.price_sheet);
-      body.replaceChildren(priceTable(rows, false), policyBoxes(data && data.policies, data && data.thresholds));
+      body.replaceChildren(priceTable(rows, false), policyBoxes(data && data.policies, data && data.thresholds), policyRules(data && data.policy) || "");
       quick.replaceChildren(priceTable(rows, true),
         el("p", { class: "small muted" }, "Full policies are on the ", el("button", { type: "button", class: "linklike", "data-goto": "tab-policy" }, "Source of truth"), " tab."));
     } catch (e) {

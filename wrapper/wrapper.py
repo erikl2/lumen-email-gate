@@ -181,7 +181,7 @@ def apply_policy(signals, findings, policy, checked=(), text="", ezio_error=None
     for c in checked:
         if c.verdict == claimcheck.CONTRADICTED:
             lad.raise_to(policy["source_of_truth_contradiction"], c.message,
-                         consequence=f"the customer would be told {c.stated} ({c.label.lower()}) when company data says {c.expected}")
+                         consequence=f"the customer would be told {c.stated} ({c.label}) when company data says {c.expected}")
         elif c.verdict == claimcheck.REVIEW:
             lad.raise_to(policy["source_of_truth_needs_review"], c.message, question=review_question(c))
 
