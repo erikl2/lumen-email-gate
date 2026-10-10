@@ -155,7 +155,7 @@ def clause_of(sent, idx):
 PLAN_NAMES = ["Starter", "Pro", "Business", "Enterprise"]
 SELF_SERVE = ["Starter", "Pro", "Business"]
 PLAN_RE = re.compile(
-    r"\b(starter|pro|business|enterprise)\s+(?:plan|tier|subscription|package|account|customers?|users?|level)s?\b"
+    r"\b(?i:(starter|pro|business|enterprise)\s+(?:plan|tier|subscription|package|account|customers?|users?|level)s?)\b"
     r"|\b(Starter|Pro|Business|Enterprise)\b(?!\s+(?:day|days|hours?|email|address|partner|owner|reasons?|needs?|days?)\b)"
 )
 ALL_PLANS_RE = re.compile(
@@ -183,7 +183,7 @@ OFFER_RE = re.compile(
     r"you're\s+eligible|your\s+(?:\d+\s*%\s+|\w+\s+)?(?:loyalty\s+)?discount|(?:we|i)\s*(?:'ll|will|can|have|'ve|am\s+going\s+to)\s+(?:apply|applied|give|add|offer|extend)|"
     r"applies\s+to\s+(?:you|your)|apply\s+(?:it|the\s+discount|a\s+discount)\s+to\s+your|for\s+you\b)", re.I)
 
-DURATION_UNIT = r"(?:business\s+days?|calendar\s+days?|days?|weeks?|months?|years?|hours?|hrs?|h\b|fortnight)"
+DURATION_UNIT = r"(?:business\s+days?|calendar\s+days?|days?|weeks?|wks?|months?|years?|yrs?|hours?|hrs?|h\b|fortnight)"
 
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -209,13 +209,13 @@ PERIOD_RE = re.compile(
     r"^\s*(?:(?P<m>(?:per|a|/|each|every|an?)\s*(?:month|mo)\b|/\s*mo\b|monthly\b|a\s+month|per\s+user\s+per\s+month|/user/mo)"
     r"|(?P<y>(?:per|a|/|each|every)\s*(?:year|yr|annum)\b|/\s*yr\b|annually\b|yearly\b|a\s+year))", re.I)
 PERCENT_PATTERNS = [
-    re.compile(rf"\b(?P<num>{NUM})\s*(?:%|percent\b|per\s*cent\b|pct\b)", re.I),
+    re.compile(rf"\b(?P<num>{NUM})[\s-]*(?:%|percent\b|per\s*cent\b|pct\b)", re.I),
     re.compile(r"(?P<num>\d+(?:\.\d+)?)\s*%"),
 ]
 FRACTIONS = {"half": 50, "a half": 50, "one half": 50, "a third": 100 / 3, "one third": 100 / 3, "a quarter": 25,
              "one quarter": 25, "a fifth": 20, "one fifth": 20, "one-fifth": 20, "a tenth": 10, "one tenth": 10}
 FRACTION_RE = re.compile(r"\b(?P<frac>(?:a|one)[\s-](?:half|third|quarter|fifth|tenth)|half)\s+(?:off|price|the\s+price|discount)\b", re.I)
-DURATION_RE = re.compile(rf"\b(?P<num>{NUM}|a|an|one|single|first)[\s-]+(?:(?:full|whole|entire|complete|calendar|additional|extra|more)[\s-]+)?(?P<unit>{DURATION_UNIT})\b", re.I)
+DURATION_RE = re.compile(rf"\b(?P<num>{NUM}|a|an|one|single|first)(?:[\s-]+|(?<=\d))(?:(?:full|whole|entire|complete|calendar|additional|extra|more)[\s-]+)?(?P<unit>{DURATION_UNIT})\b", re.I)
 OPEN_ENDED_RE = re.compile(
     r"\b(?:any\s*time|at\s+any\s+(?:time|point)|whenever|no\s+matter\s+when|for\s+life|lifetime|indefinitely|forever|no\s+time\s+limit|"
     r"(?:within|during|in)\s+(?:the\s+)?(?:first|whole|entire|full)\s+(?:year|12\s+months|twelve\s+months)|"
@@ -228,13 +228,13 @@ def unit_of(word):
         return "hours", 1
     if w.startswith("business day") or w.startswith("calendar day") or w.startswith("day"):
         return "days", 1
-    if w.startswith("week"):
+    if w.startswith("week") or w.startswith("wk"):
         return "days", 7
     if w == "fortnight":
         return "days", 14
     if w.startswith("month"):
         return "months", 1
-    if w.startswith("year"):
+    if w.startswith("year") or w.startswith("yr"):
         return "months", 12
     return None, 1
 
@@ -801,7 +801,8 @@ class Checker:
         r"\b(?:(?:i|we)(?:'ll|\s+will|\s+are\s+going\s+to|'re\s+going\s+to|\s+promise(?:\s+to)?|\s+guarantee|\s+can\s+guarantee)|i'll\s+make\s+sure|i\s+will\s+make\s+sure|we'll\s+make\s+sure|"
         r"(?:engineering|the\s+(?:dev|engineering|product)\s+team|our\s+(?:developers|engineers|product\s+team)|product)\s+(?:will|is\s+going\s+to|'ll|plans\s+to|promises))"
         r"[^.!?]{0,80}?\b(?:ship\w*|release\w*|launch\w*|build\w*|add\w*|implement\w*|deliver\w*|roll\w*\s+out|develop\w*|have\s+it\s+(?:ready|done|live)|get\s+(?:it|this|that)\s+(?:built|added|fixed|shipped|done)|fix\w*|support)\b", re.I)
-    FEATURE_NOUN = re.compile(r"\b(?:feature|integration|functionality|capabilit\w*|export|import|api|endpoint|dashboard|option|setting|module|plugin|add[\s-]?on|update|version|release|fix|bug|roadmap|sso|support\s+for)\b", re.I)
+    FEATURE_NOUN = re.compile(r"\b(?:features?|integrations?|functionality|capabilit\w*|export|import|api|endpoints?|dashboard|modules?|plugins?|add[\s-]?ons?|versions?|release|fix|bug|roadmap|sso|mobile\s+app|dark\s+mode)\b", re.I)
+    WEAK_FEATURE_NOUN = re.compile(r"\b(?:option|setting|update|support\s+for|improvement|change)s?\b", re.I)
     ENGINEERING = re.compile(r"\b(?:engineering|engineers|developers|dev\s+team|product\s+team|roadmap)\b", re.I)
     DATE = re.compile(r"\b(?:next\s+(?:week|month|quarter|year|sprint|release)|by\s+(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday|tomorrow|next|the\s+end\s+of\s+(?:the\s+)?(?:week|month|quarter|year)|end\s+of\s+(?:the\s+)?(?:week|month|quarter|year)|q[1-4]|january|february|march|april|may|june|july|august|september|october|november|december|\d)|"
                       r"(?:this|next)\s+(?:week|month|quarter)|in\s+(?:the\s+)?(?:next\s+)?(?:\d+|a|two|three|few|couple\s+of)\s+(?:days|weeks|months)|q[1-4]\s*(?:20\d\d)?|before\s+(?:your\s+renewal|the\s+end))\b", re.I)
@@ -809,7 +810,7 @@ class Checker:
         r"\b(?:make\s+an?\s+exception|as\s+an?\s+exception|one[\s-]time\s+exception|just\s+this\s+once|waive\w*|bend\s+the\s+rules?|special\s+(?:case|exception|arrangement)|off\s+the\s+record|"
         r"override|outside\s+(?:of\s+)?(?:the\s+|our\s+)?(?:policy|refund\s+window|trial)|extend\w*\s+(?:your|the)\s+(?:free\s+)?(?:trial|refund\s+window|deadline)|"
         r"(?:free|complimentary|bonus)\s+(?:upgrade|month|months|credit|seats?)|on\s+the\s+house|comp(?:ed|ing)?\s+(?:you|your)|credit\s+your\s+account|"
-        r"(?:extra|additional|special|exclusive|personal)\s+(?:\d+\s*%\s+)?discount|(?:i|we)(?:'ll|\s+will|\s+can)\s+(?:give|offer)\s+you\s+(?:a|an)\s+(?:\w+\s+)?discount)\b", re.I)
+        r"(?:extra|additional|special|exclusive|personal)\s+(?:\d+\s*%\s+)?discount|(?:i|we)(?:'ll|\s+will|\s+can)\s+(?:give|offer)\s+you\s+(?:a|an)\s+(?!loyalty|annual|yearly)(?:\w+\s+)?discount)\b", re.I)
     PROMISE_WORD = re.compile(r"\b(?:i|we)\s+(?:promise|guarantee|swear)\b|\bpromise\s+(?:you|that)\b|\byou\s+have\s+my\s+word\b", re.I)
 
     def check_authority(self, text, sent):
@@ -818,7 +819,7 @@ class Checker:
         if self.can_promise:
             return out
         fp = self.FEATURE_PROMISE.search(st)
-        if fp and (self.FEATURE_NOUN.search(st) or self.ENGINEERING.search(st)) and not re.search(r"\b(?:can't|cannot|won't|unable|not\s+able)\b", st[:fp.end()], re.I):
+        if fp and (self.FEATURE_NOUN.search(st) or self.ENGINEERING.search(st) or (self.WEAK_FEATURE_NOUN.search(st) and self.DATE.search(st))) and not re.search(r"\b(?:can't|cannot|won't|unable|not\s+able)\b", st[:fp.end()], re.I):
             out.append(Claim("commitment", "Product/feature promise", [s0 + fp.start(), s0 + fp.end()], fp.group(0), REVIEW,
                              "The email promises product work (a feature, fix or release). Agents can't promise product features; a manager must confirm with product first.",
                              stated="promise of product work", expected="no feature promises without manager sign-off",

@@ -177,8 +177,12 @@ def apply_policy(signals, findings, policy, checked=(), text="", ezio_error=None
     lad = Ladder()
     th = {d: policy["dimension_minimums"][d]["hold_below"] for d in DIMENSIONS}
 
-    # 1. Our source of truth (always runs; does not depend on Ezio).
+    # 1. Our source of truth (always runs; does not depend on Ezio). One reason per rule, however often it trips.
+    seen = set()
     for c in checked:
+        if c.verdict != claimcheck.VERIFIED and (c.verdict, c.label) in seen:
+            continue
+        seen.add((c.verdict, c.label))
         if c.verdict == claimcheck.CONTRADICTED:
             lad.raise_to(policy["source_of_truth_contradiction"], c.message,
                          consequence=f"the customer would be told {c.stated} ({c.label}) when company data says {c.expected}")
@@ -237,7 +241,7 @@ def review_question(c):
     if k == "tone" and "Flattery" in c.label:
         return "The email agrees with or flatters the customer. Is what it agrees with actually true? Rewrite as a neutral, factual reply if not."
     if k == "tone":
-        return f"Remove the hype or guarantee ({c.stated}), or approve only if a manager accepts this wording."
+        return "Remove the hype, guarantees and exclamation marks (highlighted in the draft), or approve only if a manager accepts this wording."
     if k == "discount_eligibility":
         return "Confirm the customer's plan and tenure meet the loyalty policy (Pro or Business, 12+ months) before sending."
     if k == "price":

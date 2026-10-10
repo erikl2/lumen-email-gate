@@ -452,11 +452,20 @@
   }
 
   function checksList(checks) {
-    return el("ul", { class: "checks" }, arr(checks).map((c) => {
+    const item = (c) => {
       const m = CHECKS[c && c.status] || CHECKS.skip;
       return el("li", null, pill(m), el("div", null, el("span", { class: "cname" }, str(c && c.name) || "Check"),
         c && c.detail ? el("span", { class: "cdetail" }, str(c.detail)) : null));
-    }));
+    };
+    const rank = { fail: 0, warn: 1, pass: 2 };
+    const all = arr(checks).filter(Boolean);
+    const active = all.filter((c) => c.status !== "skip" && CHECKS[c.status]).sort((a, b) => rank[a.status] - rank[b.status]);
+    const skipped = all.filter((c) => c.status === "skip" || !CHECKS[c.status]);
+    return el("div", null,
+      active.length ? el("ul", { class: "checks" }, active.map(item)) : null,
+      skipped.length ? el("details", { class: "evlog section" },
+        el("summary", null, `${skipped.length} check${skipped.length === 1 ? "" : "s"} found nothing to check: ${skipped.map((c) => str(c.name)).join(", ")}`),
+        el("ul", { class: "checks" }, skipped.map(item))) : null);
   }
 
   function ezioCard(sig) {

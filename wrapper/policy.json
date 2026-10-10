@@ -1,33 +1,37 @@
 {
   "_help": "Policy knobs for the Lumen Cloud customer-support gate. Every threshold has a one-sentence 'why'. The decision ladder is: BLOCK > HOLD_FOR_REVIEW > APPROVE, strictest reason wins.",
-
   "source_of_truth_contradiction": "BLOCK",
   "source_of_truth_contradiction_why": "A price, discount, refund, trial, response-time or eligibility statement that contradicts price_sheet.csv or policies.json is a promise we would have to honor or retract, so it never leaves the building (business rule 1).",
-
   "source_of_truth_needs_review": "HOLD_FOR_REVIEW",
   "source_of_truth_needs_review_why": "Feature promises, delivery dates, exceptions, guarantees, hype, and figures we can't tie to one plan aren't provably false, so a manager decides rather than the gate (business rules 3 and 4).",
-
   "ezio_contradicted_claim": "BLOCK",
   "ezio_contradicted_claim_why": "Ezio fact-checks public-knowledge claims (laws, regulations) our files can't see; a contradicted claim is a compliance risk in writing (business rule 6).",
-
   "ezio_unverifiable_claim": "HOLD_FOR_REVIEW",
   "ezio_unverifiable_claim_why": "A claim Ezio extracted but could not verify is not known to be false, so a person confirms it instead of the gate blocking it; a supported claim needs no second opinion (business rule 6).",
-
   "on_ezio_failure": "HOLD_FOR_REVIEW",
   "on_ezio_failure_why": "If Ezio is down, slow beyond the retry budget, or malformed, our own price/policy check still runs and still BLOCKs anything it proves wrong; everything else fails closed to a human, because a support email can wait minutes but a wrong one can't be unsent.",
-
-  "tier_decisions": { "GREEN": "APPROVE", "YELLOW": "HOLD_FOR_REVIEW", "RED": "HOLD_FOR_REVIEW" },
-  "tier_decisions_why": "The tier is only a backstop: GREEN never approves on its own (our data and each dimension must also pass), YELLOW means Ezio itself says 'use with care', and a RED tier without a contradicted claim comes from tone/bias/agreement, which the business rules route to review, not to a block; contradicted claims block through their own rule.",
-
-  "dimension_minimums": {
-    "tone":      { "hold_below": 70, "why": "One friendly exclamation mark or all-caps acronym costs 6-10 points in Ezio's tone score and is normal in support email; below 70 means repeated hype (three or more promotional signals), which rule 4 sends to review even when every number is right." },
-    "bias":      { "hold_below": 70, "why": "Each one-sided phrase ('clearly', 'everyone knows') costs 15 points; a single one is harmless, but below 70 the email is arguing rather than informing, which reads badly to a customer." },
-    "agreement": { "hold_below": 70, "why": "Each flattering or over-agreeing phrase costs 25 points; two or more (below 70) means the email is telling the customer what they want to hear, which rule 4 says needs a manager, while our own check also flags strong single phrases like 'you're absolutely right'." }
+  "tier_decisions": {
+    "GREEN": "APPROVE",
+    "YELLOW": "HOLD_FOR_REVIEW",
+    "RED": "HOLD_FOR_REVIEW"
   },
-
+  "tier_decisions_why": "The tier is only a backstop: GREEN never approves on its own (our data and each dimension must also pass), YELLOW means Ezio itself says 'use with care', and a RED tier without a contradicted claim comes from tone/bias/agreement, which the business rules route to review, not to a block; contradicted claims block through their own rule.",
+  "dimension_minimums": {
+    "tone": {
+      "hold_below": 70,
+      "why": "One friendly exclamation mark or all-caps acronym costs 6-10 points in Ezio's tone score and is normal in support email; below 70 means repeated hype (three or more promotional signals), which rule 4 sends to review even when every number is right."
+    },
+    "bias": {
+      "hold_below": 75,
+      "why": "Each one-sided phrase ('clearly', 'everyone knows', 'anyone who disagrees') costs 15 points; one is harmless, but two or more (70 or below) means the email argues instead of informing, which reads badly to a customer."
+    },
+    "agreement": {
+      "hold_below": 70,
+      "why": "Each flattering or over-agreeing phrase costs 25 points; two or more (below 70) means the email is telling the customer what they want to hear, which rule 4 says needs a manager, while our own check also flags strong single phrases like 'you're absolutely right'."
+    }
+  },
   "when_accuracy_not_scored": "ignore",
   "when_accuracy_not_scored_why": "'Not scored' only means Ezio found no public-knowledge claims; our source-of-truth check covers prices and policies, and rule 5 says a missing accuracy score is not a reason to block, so a plain 'we'll update you by end of day' email goes out.",
-
   "when_accuracy_unavailable": "HOLD_FOR_REVIEW",
   "when_accuracy_unavailable_why": "When the fact-check service is down we can still prove prices and policies wrong (and BLOCK), but we can't see legal or regulatory claims, so anything not already blocked waits for a person instead of being sent unchecked."
 }
